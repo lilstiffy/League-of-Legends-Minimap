@@ -16,11 +16,14 @@ import custom.FileHandler
 import custom.ValueSliderView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import model.Coordinate
 import java.awt.GraphicsEnvironment
 import java.awt.Rectangle
 import java.awt.Robot
 import java.awt.image.BufferedImage
 import java.io.File
+
+
 
 @Composable
 @Preview
@@ -33,11 +36,19 @@ fun ScreenCapture() {
     val captureX = screenWidth - 270 // calculate the X coordinate of the capture region
     val captureY = screenHeight - 270 // calculate the Y coordinate of the capture region
 
+
+
+
+
+
+
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
+            var captureSelection:CaptureSelection = CaptureSelection()
+            val coordinate = captureSelection.coordinateFromMouseClick
             val robot = Robot()
             while (true) {
-                val screenRect = Rectangle(captureX, captureY, captureDimension.toInt(), captureDimension.toInt()) // adjust to your screen resolution
+                val screenRect = Rectangle(coordinate.x, coordinate.y, captureDimension.toInt(), captureDimension.toInt()) // adjust to your screen resolution
 
                 val screenCaptureImage = robot.createScreenCapture(screenRect)
                 val bufferedImage = BufferedImage(
@@ -86,6 +97,7 @@ fun saveSettings(dimension: Float) {
 
 
 fun main() = application {
+    Thread.sleep(3000)
     Window(
         title = "League of Legends Map",
         icon = painterResource("LoL_icon.png"),
@@ -94,3 +106,5 @@ fun main() = application {
         ScreenCapture()
     }
 }
+
+
