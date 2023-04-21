@@ -5,7 +5,6 @@ package model;
  */
 public class Coordinate {
 
-
     private final int x;
     private final int y;
 
