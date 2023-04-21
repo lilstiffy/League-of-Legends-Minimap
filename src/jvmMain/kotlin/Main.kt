@@ -105,14 +105,10 @@ fun saveSettings(dimension: Float) {
 }
 
 fun startCaptureCoordinatesEvent() {
-
     var captureCoordinatesThread: CaptureCoordinatesEvent =
         CaptureCoordinatesEvent()
-    // Later, in some method
-    // Do some in-thread CPU-intensive work
-    println("I am working hard")
+    // Start thread
     workerPool.execute(captureCoordinatesThread)
-
 }
 
 fun main() = application {

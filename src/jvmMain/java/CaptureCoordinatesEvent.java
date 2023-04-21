@@ -11,7 +11,6 @@ public class CaptureCoordinatesEvent implements Runnable {
     @Override
     public void run() {
 
-
         int input = JOptionPane.showConfirmDialog(null,
                 "Place this at the center of your mini-map and click OK", "Set location", JOptionPane.DEFAULT_OPTION);
         try {
